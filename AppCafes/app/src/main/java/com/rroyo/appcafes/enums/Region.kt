@@ -1,5 +1,7 @@
 package com.rroyo.appcafes.enums
 
 enum class Region {
-    EXAMPLE
+    EUROPE,
+    ASIA
+    ;
 }
