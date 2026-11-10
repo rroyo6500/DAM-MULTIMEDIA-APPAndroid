@@ -1,4 +1,4 @@
-package com.rroyo.appcafes.modelo
+package com.rroyo.appcafes.model
 
 import com.rroyo.appcafes.enums.Region
 
