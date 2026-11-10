@@ -1,6 +1,6 @@
-package com.rroyo.appcafes.data
+package com.rroyo.app.appcafes.data
 
-import com.rroyo.appcafes.model.Coffee
+import com.rroyo.app.appcafes.model.Coffee
 
 class CoffeeList : CoffeeInterface {
 

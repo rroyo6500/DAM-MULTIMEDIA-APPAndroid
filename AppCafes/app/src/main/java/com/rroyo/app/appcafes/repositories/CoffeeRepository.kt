@@ -1,4 +1,4 @@
-package com.rroyo.appcafes.repositories
+package com.rroyo.app.appcafes.repositories
 
 class CoffeeRepository private constructor(){
 

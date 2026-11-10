@@ -1,6 +1,6 @@
-package com.rroyo.appcafes.model
+package com.rroyo.app.appcafes.model
 
-import com.rroyo.appcafes.enums.Region
+import com.rroyo.app.appcafes.enums.Region
 
 class Coffee (
 

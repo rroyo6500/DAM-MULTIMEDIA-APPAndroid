@@ -1,4 +1,4 @@
-package com.rroyo.appcafes.enums
+package com.rroyo.app.appcafes.enums
 
 import com.rroyo.appcafes.R
 
