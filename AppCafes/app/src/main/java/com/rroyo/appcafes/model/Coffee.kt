@@ -2,7 +2,7 @@ package com.rroyo.appcafes.model
 
 import com.rroyo.appcafes.enums.Region
 
-class Coofee (
+class Coffee (
 
     val name: String,
     val region: Region,
