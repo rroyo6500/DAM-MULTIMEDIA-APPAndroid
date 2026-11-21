@@ -1,40 +1,40 @@
 package com.example.aplicacionlista.datos
 
-import com.example.aplicacionlista.modelo.Bando
+import com.example.aplicacionlista.modelo.Pais
 import com.example.aplicacionlista.modelo.Personaje
 
 interface RepositorioPersonajes {
 
     fun poblar() {
         nuevoPersonaje(
-            Personaje("Benjamin Sisko", "Capitán de DS9", Bando.STARFLEET)
+            Personaje("Santos", "Productor en Minas Gerais", Pais.BRASIL)
         )
         nuevoPersonaje(
-            Personaje("Miles O'Brien", "Jefe ingeniero de DS9", Bando.STARFLEET)
+            Personaje("Mateo", "Caficultor del Eje Cafetero", Pais.COLOMBIA)
         )
         nuevoPersonaje(
-            Personaje("Nerys Kira", "Primer Oficial de DS9", Bando.BAJOR)
+            Personaje("Abebe", "Recolector en Yirgacheffe", Pais.ETIOPIA)
         )
         nuevoPersonaje(
-            Personaje("Quark", "Dueño de \"Quark's\"", Bando.FERENGI)
+            Personaje("Carlos", "Tostador en Antigua", Pais.GUATEMALA)
         )
         nuevoPersonaje(
-            Personaje("Ezri Dax", "Canciller de DS9", Bando.STARFLEET)
+            Personaje("Elena", "Productora en Copán", Pais.HONDURA)
         )
         nuevoPersonaje(
-            Personaje("Elim Garak", "Sastre", Bando.BAJOR)
+            Personaje("Budi", "Cultivador en Sumatra", Pais.INDONESIA)
         )
         nuevoPersonaje(
-            Personaje("Gul Dukat", "Gul de la Unión Cardasiana", Bando.CARDASSIA)
+            Personaje("Kamau", "Agrónomo en Nyeri", Pais.KENIA)
         )
         nuevoPersonaje(
-            Personaje("Weyoun", "Vorta del Dominio", Bando.DOMINION)
+            Personaje("Sofía", "Barista en Chiapas", Pais.MEXICO)
         )
         nuevoPersonaje(
-            Personaje("Worf", "Jefe de Seguridad en DS9", Bando.STARFLEET)
+            Personaje("Diego", "Productor en Boquete", Pais.PANAMA)
         )
         nuevoPersonaje(
-            Personaje("Alexander Rozhenko", "Oficial de armamento del ya'Vang", Bando.KLINGON, "Hijo de Worf")
+            Personaje("Valeria", "Catadora en Cajamarca", Pais.PERU, "Especialista en altura")
         )
     }
 
