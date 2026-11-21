@@ -1,10 +1,13 @@
 package com.rroyo.app
 
+import android.content.Intent
 import android.os.Bundle
+import android.widget.Button
 import androidx.activity.enableEdgeToEdge
 import androidx.appcompat.app.AppCompatActivity
 import androidx.core.view.ViewCompat
 import androidx.core.view.WindowInsetsCompat
+import com.rroyo.app.games.tictactoe.TicTacToeActivity
 import com.rroyo.appcafes.R
 
 class MainActivity : AppCompatActivity() {
@@ -18,7 +21,10 @@ class MainActivity : AppCompatActivity() {
             insets
         }
 
-
+        findViewById<Button>(R.id.toTicTacToe).setOnClickListener {
+            val intent = Intent(this, TicTacToeActivity::class.java)
+            startActivity(intent);
+        }
 
     }
 }

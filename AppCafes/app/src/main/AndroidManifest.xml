@@ -25,6 +25,10 @@
             android:name="com.rroyo.app.appcafes.AppCafesMainActivity"
             android:exported="false"
             android:windowSoftInputMode="adjustResize" />
+        <activity
+            android:name="com.rroyo.app.games.tictactoe.TicTacToeActivity"
+            android:exported="false"
+            android:windowSoftInputMode="adjustResize" />
     </application>
 
 </manifest>
