@@ -1,5 +1,7 @@
 package com.rroyo.app.games.tictactoe
 
+import android.content.res.ColorStateList
+import android.graphics.Color
 import android.os.Bundle
 import android.os.Debug
 import android.util.Log
@@ -12,9 +14,12 @@ import androidx.appcompat.app.AppCompatActivity
 import androidx.core.view.ViewCompat
 import androidx.core.view.WindowInsetsCompat
 import com.rroyo.app.games.tictactoe.game_core.GameConstants
+import com.rroyo.app.games.tictactoe.game_core.ai.AI
 import com.rroyo.app.games.tictactoe.game_core.enums.GameDificulties
 import com.rroyo.app.games.tictactoe.game_core.objects.Point
+import com.rroyo.app.games.tictactoe.game_core.utils.Util
 import com.rroyo.appcafes.R
+import java.text.StringCharacterIterator
 
 class TicTacToeActivity : AppCompatActivity() {
     override fun onCreate(savedInstanceState: Bundle?) {
@@ -31,6 +36,38 @@ class TicTacToeActivity : AppCompatActivity() {
 
     }
 
+    fun getButton(point: Point) : Button? {
+        val pos = "${point.y}|${point.x}"
+
+        val btn = when (pos) {
+            "0|0" -> findViewById<Button>(R.id.btn_00)
+            "0|1" -> findViewById<Button>(R.id.btn_01)
+            "0|2" -> findViewById<Button>(R.id.btn_02)
+            "1|0" -> findViewById<Button>(R.id.btn_10)
+            "1|1" -> findViewById<Button>(R.id.btn_11)
+            "1|2" -> findViewById<Button>(R.id.btn_12)
+            "2|0" -> findViewById<Button>(R.id.btn_20)
+            "2|1" -> findViewById<Button>(R.id.btn_21)
+            "2|2" -> findViewById<Button>(R.id.btn_22)
+            else -> null
+        }
+        return btn
+    }
+
+    fun updateBoard() {
+        var x = 0;
+        val row = null
+        val col = null
+        for ((y, row) in GameConstants.board.board.withIndex()) {
+            for (col in row) {
+                val btn = getButton(Point(x, y))
+                btn?.text = "$col"
+                x++
+            }
+        }
+
+    }
+
     fun initComponents() {
         initDifficultySpinner()
         initButtons()
@@ -38,12 +75,37 @@ class TicTacToeActivity : AppCompatActivity() {
 
     fun initButtons() {
         val onClickListener : View.OnClickListener = View.OnClickListener { v ->
-            val btnPosition : List<String> = findViewById<Button>(v?.id!!).text.toString()
-                .split("|").toList()
-            val point = Point(btnPosition[1].toInt(), btnPosition[0].toInt())
+            val btn = findViewById<Button>(v?.id!!)
+            if (btn.text.toString().contains("|")) {
+                val btnPosition : List<String> = btn.text.toString().split("|").toList()
+                val point = Point(btnPosition[1].toInt(), btnPosition[0].toInt())
 
+                if (GameConstants.board.getPos(point.x, point.y) == ' ') {
+                    GameConstants.board.setPos(point.x, point.y, 'X')
+                    btn.text = "X"
+                    btn.setTextColor(Color.BLACK)
+                    btn.isActivated = false
 
+                    if (Util.compViscory(GameConstants.board, 'X')) {
+                        Log.v("result", "Victory X")
+                    }
 
+                    if (Util.haveMovements(GameConstants.board)) {
+                        val aiPoint = AI.start(GameConstants.board)
+                        val aiBtn = getButton(aiPoint)
+                        aiBtn?.text = "O"
+                        aiBtn?.setTextColor(Color.BLACK)
+                        aiBtn?.isActivated = false
+
+                        if (Util.compViscory(GameConstants.board, 'O')) {
+                            Log.v("result", "Victory O")
+                        }
+                    } else {
+                        Log.v("result", "Empate")
+                    }
+
+                }
+            }
         }
 
         findViewById<Button>(R.id.btn_00).setOnClickListener(onClickListener)

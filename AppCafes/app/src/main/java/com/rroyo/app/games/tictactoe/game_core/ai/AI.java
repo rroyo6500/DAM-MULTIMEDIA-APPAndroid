@@ -1,5 +1,9 @@
 package com.rroyo.app.games.tictactoe.game_core.ai;
 
+import android.graphics.Color;
+import android.widget.Button;
+
+import com.rroyo.app.games.tictactoe.game_core.GameConstants;
 import com.rroyo.app.games.tictactoe.game_core.objects.Board;
 import com.rroyo.app.games.tictactoe.game_core.objects.Point;
 import com.rroyo.app.games.tictactoe.game_core.utils.Util;
@@ -16,6 +20,16 @@ public class AI {
 
     private static final char IA = 'O';
     private static final char HUMANO = 'X';
+
+    public static Point start(Board board) {
+        Point p = calculateMovement(board);
+
+        if (board.getPos(p.getX(), p.getY()) == ' ') {
+            board.setPos(p.getX(), p.getY(), IA);
+        }
+
+        return p;
+    }
 
     public static Point calculateMovement(Board board) {
         int mejorValor = Integer.MIN_VALUE;

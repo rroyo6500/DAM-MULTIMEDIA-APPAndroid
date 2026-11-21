@@ -1,6 +1,10 @@
 package com.rroyo.app.games.tictactoe.game_core.utils;
 
+import androidx.appcompat.app.AppCompatActivity;
+
 import com.rroyo.app.games.tictactoe.game_core.objects.Board;
+import androidx.appcompat.app.AppCompatActivity;
+
 
 public class Util {
 
