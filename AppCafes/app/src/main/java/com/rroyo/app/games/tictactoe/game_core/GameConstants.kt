@@ -7,6 +7,7 @@ class GameConstants {
 
     companion object {
         var difficulty : GameDificulties = GameDificulties.EASY
+        var win : Boolean = false;
 
         val board : Board = Board(3, 3, ' ')
     }

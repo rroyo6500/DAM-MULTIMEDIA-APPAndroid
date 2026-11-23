@@ -1,12 +1,12 @@
 package com.rroyo.app.games.tictactoe.game_core.ai;
 
-import android.graphics.Color;
-import android.widget.Button;
-
 import com.rroyo.app.games.tictactoe.game_core.GameConstants;
+import com.rroyo.app.games.tictactoe.game_core.enums.GameDificulties;
 import com.rroyo.app.games.tictactoe.game_core.objects.Board;
 import com.rroyo.app.games.tictactoe.game_core.objects.Point;
 import com.rroyo.app.games.tictactoe.game_core.utils.Util;
+
+import java.util.Random;
 
 public class AI {
 
@@ -22,16 +22,56 @@ public class AI {
     private static final char HUMANO = 'X';
 
     public static Point start(Board board) {
-        Point p = calculateMovement(board);
+        Point p = calculateMovementFromDificulty(board, GameConstants.Companion.getDifficulty());
 
-        if (board.getPos(p.getX(), p.getY()) == ' ') {
-            board.setPos(p.getX(), p.getY(), IA);
+        if (p.getX() >= 0 && p.getY() >= 0) {
+            if (board.getPos(p.getX(), p.getY()) == board.base) {
+                board.setPos(p.getX(), p.getY(), IA);
+            }
+            return p;
+        }
+        return null;
+    }
+
+    private static Point calculateMovementFromDificulty(Board board, GameDificulties dificulty) {
+        Point p = null;
+
+        switch (dificulty) {
+            case EASY: {
+                p = easy(board);
+            } break;
+            case MEDIUM: {
+                int hard = new Random().nextInt(3);
+
+                if (hard > 0) {
+                    p = calculateMovement(board);
+                } else {
+                    p = easy(board);
+                }
+            } break;
+            case HARD: {
+                p = calculateMovement(board);
+            } break;
         }
 
         return p;
     }
 
-    public static Point calculateMovement(Board board) {
+    private static Point easy(Board board) {
+        Random r = new Random();
+        Point p = new Point(-1, -1);
+
+        int x, y;
+        do {
+            x = r.nextInt(3);
+            y = r.nextInt(3);
+            p = new Point(x, y);
+        } while (board.getPos(x, y) != board.base);
+
+        return p;
+    }
+
+    private static Point calculateMovement(Board board) {
         int mejorValor = Integer.MIN_VALUE;
         int[] movement = new int[]{-1, -1};
 
@@ -59,9 +99,9 @@ public class AI {
     private static int minimax(Board board, int profundidad,
                                boolean esMax, int alpha, int beta) {
 
-        if (Util.compViscory(board, IA))
+        if (Util.compVictory(board, IA))
             return 10 - profundidad;
-        if (Util.compViscory(board, HUMANO))
+        if (Util.compVictory(board, HUMANO))
             return profundidad - 10;
         if (!Util.haveMovements(board))
             return 0;

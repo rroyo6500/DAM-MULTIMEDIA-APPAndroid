@@ -65,7 +65,9 @@ public class Board {
      * Liempia el tablero completo
      */
     public void clear () {
-        board.clear();
+        for (List<Character> row : board) {
+            row.replaceAll(ignored -> base);
+        }
     }
 
     /**

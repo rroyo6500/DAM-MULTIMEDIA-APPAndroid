@@ -1,9 +1,6 @@
 package com.rroyo.app.games.tictactoe.game_core.utils;
 
-import androidx.appcompat.app.AppCompatActivity;
-
 import com.rroyo.app.games.tictactoe.game_core.objects.Board;
-import androidx.appcompat.app.AppCompatActivity;
 
 
 public class Util {
@@ -17,7 +14,7 @@ public class Util {
      * @param player The character representing the player's symbol.
      * @return true if the player has a winning condition; false otherwise.
      */
-    public static boolean compViscory(Board b, char player) {
+    public static boolean compVictory(Board b, char player) {
         for (int i = 0; i < b.height; i++)
             if (b.getPos(i, 0) == player &&
                     b.getPos(i, 1) == player &&
